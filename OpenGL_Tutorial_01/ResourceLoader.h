@@ -7,9 +7,13 @@
 #include "Shader.h"
 
 enum class MESH {
-	TILE,
+	TILE_BASE,
+	TILE_START,
+	TILE_GOAL,
+	TILE_BLOCK,
 	PLAYER,
 	GROUND,
+	GRASS
 };
 
 enum class TEXTURE {

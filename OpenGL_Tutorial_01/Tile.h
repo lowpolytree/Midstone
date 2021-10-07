@@ -40,8 +40,10 @@ public:
 
 	bool getIsFirst() const { return isFirst; }
 	bool getIsLast() const { return isLast; }
+	bool getIsBlock() const { return isBlock; }
 	void setIsFirst(bool status) { isFirst = status; }
 	void setIsLast(bool status) { isLast = status; }
+	void setIsBlock(bool status) { isBlock = status; }
 
 private:
 	std::unique_ptr<class DemoObject> tile;
@@ -53,5 +55,6 @@ private:
 	bool isIntersectedOnce;
 	bool isFirst;
 	bool isLast;
+	bool isBlock;
 };
 

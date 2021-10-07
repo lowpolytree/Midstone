@@ -9,12 +9,15 @@
 #include "Tile.h"
 
 Player::Player() {
+	isMoving = false;
 	timer = 0;
 }
 
 Player::~Player() {}
 
 bool Player::Load(const std::shared_ptr<Mesh>& mesh, const std::shared_ptr<Shader>& shader, const std::shared_ptr<Texture>& tex) {
+	isMoving = false;
+	timer = 0;
 	player = std::make_unique<DemoObject>(mesh, shader, tex);
 
 	if (!player) {

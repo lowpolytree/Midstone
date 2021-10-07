@@ -6,10 +6,10 @@
 
 class Camera;
 
-class Level0 : public Level
+class Level1 : public Level
 {
 public:
-	Level0();
+	Level1();
 
 	bool OnEnter() override;
 	bool OnExit() override;
@@ -20,12 +20,11 @@ public:
 
 	virtual std::string getStateID() const override { return stateID; }
 
-	void MovePlayer(const glm::vec3& direction);
-
 private:
 	std::unique_ptr<class Camera> camera;
 	std::unique_ptr<class Map> map;
 	std::unique_ptr<class DemoObject> ground;
+	std::unique_ptr<class DemoObject> grass;
 	std::unique_ptr<class Player> player;
 
 	static const std::string stateID;

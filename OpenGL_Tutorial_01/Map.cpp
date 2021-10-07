@@ -3,16 +3,16 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <algorithm>
 #include "MapReader.h"
+#include "ResourceLoader.h"
 
-constexpr int TILE_NUM = 9;
-constexpr int TILE_OFFSET = 4;
+constexpr int TILE_OFFSET = 5;
 
 Map::Map() {}
 Map::~Map() {}
 
-bool Map::Load(const std::shared_ptr<Mesh>& mesh, const std::shared_ptr<Shader>& shader, const std::shared_ptr<Texture>& tex)
+bool Map::Load(const std::string_view filepath, std::map<MESH, std::shared_ptr<Mesh>>& meshes, const std::shared_ptr<Shader>& shader, const std::shared_ptr<Texture>& tex)
 {
-    auto mapString = MapReader::ReadMapFromFile("Resources\\Maps\\Level0.txt");
+    auto mapString = MapReader::ReadMapFromFile(filepath);
     MAP_WIDTH = (int)sqrt(mapString.size());
     int tileID = 0;
 
@@ -22,7 +22,7 @@ bool Map::Load(const std::shared_ptr<Mesh>& mesh, const std::shared_ptr<Shader>&
         case 'o': // o is a regular tile
         {
             auto tile = std::make_unique<Tile>();
-            tile->Load(mesh, shader, tex);
+            tile->Load(meshes[MESH::TILE_BASE], shader, tex);
             tile->setId(tileID); //tile ids are just numbers from 0 to n.
             tiles.push_back(std::move(tile));
             tileID++;
@@ -32,7 +32,7 @@ bool Map::Load(const std::shared_ptr<Mesh>& mesh, const std::shared_ptr<Shader>&
         case 'f': // f is goal
         {
             auto tile = std::make_unique<Tile>();
-            tile->Load(mesh, shader, tex);
+            tile->Load(meshes[MESH::TILE_GOAL], shader, tex);
             tile->setId(tileID); //tile ids are just numbers from 0 to n.
             tile->setIsLast(true);
             tiles.push_back(std::move(tile));
@@ -43,9 +43,19 @@ bool Map::Load(const std::shared_ptr<Mesh>& mesh, const std::shared_ptr<Shader>&
         case 's': // s is starting position
         {
             auto tile = std::make_unique<Tile>();
-            tile->Load(mesh, shader, tex);
+            tile->Load(meshes[MESH::TILE_START], shader, tex);
             tile->setId(tileID); //tile ids are just numbers from 0 to n.
             tile->setIsFirst(true);
+            tiles.push_back(std::move(tile));
+            tileID++;
+        }
+            break;
+
+        case 'b': // blocks the wayW
+        {
+            auto tile = std::make_unique<Tile>();
+            tile->Load(meshes[MESH::TILE_BLOCK], shader, tex);
+            tile->setId(tileID); //tile ids are just numbers from 0 to n.
             tiles.push_back(std::move(tile));
             tileID++;
         }

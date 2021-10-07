@@ -9,27 +9,47 @@ std::map<SHADER, std::shared_ptr<Shader>>  ResourceLoader::shaders;
 bool ResourceLoader::LoadResources()
 {
 	//LOADING MESHES
-	//TILE MESH
-	if (!OBJLoader::loadOBJ("Resources\\Models\\Tile.obj"))
-		return false;
-
-	meshes.insert(std::make_pair(MESH::TILE, std::make_shared<Mesh>(OBJLoader::vertices, OBJLoader::uvs, OBJLoader::normals)));
-
-	//PLAYER MESH
+	//PLAYER
 	if (!OBJLoader::loadOBJ("Resources\\Models\\Player.obj"))
 		return false;
 
 	meshes.insert(std::make_pair(MESH::PLAYER, std::make_shared<Mesh>(OBJLoader::vertices, OBJLoader::uvs, OBJLoader::normals)));
 
-	//GROUND MESH
+	//TILES
+	if (!OBJLoader::loadOBJ("Resources\\Models\\Tile_Base.obj"))
+		return false;
+
+	meshes.insert(std::make_pair(MESH::TILE_BASE, std::make_shared<Mesh>(OBJLoader::vertices, OBJLoader::uvs, OBJLoader::normals)));
+
+	if (!OBJLoader::loadOBJ("Resources\\Models\\Tile_Start.obj"))
+		return false;
+
+	meshes.insert(std::make_pair(MESH::TILE_START, std::make_shared<Mesh>(OBJLoader::vertices, OBJLoader::uvs, OBJLoader::normals)));
+
+	if (!OBJLoader::loadOBJ("Resources\\Models\\Tile_Goal.obj"))
+		return false;
+
+	meshes.insert(std::make_pair(MESH::TILE_GOAL, std::make_shared<Mesh>(OBJLoader::vertices, OBJLoader::uvs, OBJLoader::normals)));
+
+	if (!OBJLoader::loadOBJ("Resources\\Models\\Tile_Block.obj"))
+		return false;
+
+	meshes.insert(std::make_pair(MESH::TILE_BLOCK, std::make_shared<Mesh>(OBJLoader::vertices, OBJLoader::uvs, OBJLoader::normals)));
+
+	//ENVIRONMENT
 	if (!OBJLoader::loadOBJ("Resources\\Models\\Ground.obj"))
 		return false;
 
 	meshes.insert(std::make_pair(MESH::GROUND, std::make_shared<Mesh>(OBJLoader::vertices, OBJLoader::uvs, OBJLoader::normals)));
 
+	if (!OBJLoader::loadOBJ("Resources\\Models\\Grass.obj"))
+		return false;
+
+	meshes.insert(std::make_pair(MESH::GRASS, std::make_shared<Mesh>(OBJLoader::vertices, OBJLoader::uvs, OBJLoader::normals)));
+
 	//LOADING TEXTURES
 	textures.insert(std::make_pair(TEXTURE::PALETTE, std::make_shared<Texture>()));
-	textures[TEXTURE::PALETTE]->loadTexture("Resources\\Art\\colors.png");
+	textures[TEXTURE::PALETTE]->loadTexture("Resources\\Art\\t_colors.png");
 	textures.insert(std::make_pair(TEXTURE::UI_BUTTON, std::make_shared<Texture>()));
 	textures[TEXTURE::UI_BUTTON]->loadTexture("Resources\\Art\\ui_button_01.png");
 

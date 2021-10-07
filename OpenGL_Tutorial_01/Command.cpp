@@ -1,5 +1,7 @@
 #include "Command.h"
-#include "Level0.h"
+#include "Level1.h"
+#include "Level2.h"
+#include "Level3.h"
 
 void QuitCommand::Execute()
 {
@@ -8,5 +10,5 @@ void QuitCommand::Execute()
 
 void PlayCommand::Execute()
 {
-	Game::gameStateMachine->ChangeLevel(new Level0());
+	Game::gameStateMachine->ChangeLevel(new Level3());
 }

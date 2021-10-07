@@ -39,8 +39,6 @@ private:
 	glm::vec3 nextPosition;
 	glm::vec3 oldPosition;
 	bool isMoving;
-
-	float velocity;
 	float timer;
 };
 

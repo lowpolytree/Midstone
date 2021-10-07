@@ -19,6 +19,8 @@ public:
 
 	void sendProjToShader(const std::shared_ptr<Shader>& shader, const std::string& name) const;
 
+	void SetUpCamera(const float mapMidpoint, const float height, const float offset);
+
 private:
 	glm::mat4 viewM;
 	glm::mat4 projM;

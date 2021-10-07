@@ -3,7 +3,7 @@
 #include <iostream>
 
 constexpr int MIN_BOUNDARY = 0;
-constexpr int MAX_BOUNDARY = 6;
+constexpr int MAX_BOUNDARY = 8;
 
 bool Collisions::Intersection(const AABB& a, const glm::vec3& aOffset, const AABB& b, const glm::vec3& bOffset)
 {

@@ -10,6 +10,7 @@ Tile::Tile(){
 	isIntersectedOnce = false;
 	isFirst = false;
 	isLast = false;
+	isBlock = false;
 }
 
 Tile::~Tile(){}

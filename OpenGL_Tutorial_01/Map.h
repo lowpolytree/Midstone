@@ -3,6 +3,7 @@
 #include <memory>
 #include <vector>
 #include <string>
+#include <map>
 #include "Observable.h"
 #include "CollisionObserver.h"
 
@@ -12,7 +13,7 @@ public:
 	Map();
 	~Map();
 
-	bool Load(const std::shared_ptr<class Mesh>& mesh, const std::shared_ptr<class Shader>& shader, const std::shared_ptr<class Texture>& tex);
+	bool Load(const std::string_view filepath, std::map<enum class MESH, std::shared_ptr<class Mesh>>& meshes, const std::shared_ptr<class Shader>& shader, const std::shared_ptr<class Texture>& tex);
 	void Render();
 
 	//Functionality

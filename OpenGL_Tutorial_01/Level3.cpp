@@ -1,4 +1,4 @@
-#include "Level0.h"
+#include "Level3.h"
 #include "Game.h"
 #include "GameOver.h"
 #include "SDL.h"
@@ -12,29 +12,13 @@
 #include "Tile.h"
 #include "Text.h"
 
-const std::string Level0::stateID = "LEVEL0";
+const std::string Level3::stateID = "LEVEL3";
 
-Level0::Level0(){}
+Level3::Level3(){}
 
-bool Level0::OnEnter() {
-	std::cout << "Entering Level0!\n";
+bool Level3::OnEnter() {
+	std::cout << "Entering Level2!\n";
 	//RESOURCES ARE LOADED IN THE MENU
-
-	//CAMERA/////////////////////////////////////////////////
-	camera = std::make_unique<Camera>();
-	camera->setProjMatrix(glm::perspective(glm::radians(45.0f), 1280.0f / 720.0f, 0.1f, 100.0f));
-	camera->setViewMatrix(glm::lookAt(glm::vec3{ 6.0f, 20.0f, 10.0f }, glm::vec3{6.0f, 0.0f, -6.0f}, glm::vec3{ 0.0f, 1.0f, 0.0f }));
-	
-
-	//VIEW AND PROJ MATRIX TO SHADER
-	ResourceLoader::shaders[SHADER::LAMBERT]->sendMatrixToShader("viewM", camera->getViewMatrix());
-	ResourceLoader::shaders[SHADER::LAMBERT]->sendMatrixToShader("projM", camera->getProjMatrix());
-
-	ResourceLoader::shaders[SHADER::TILE]->sendMatrixToShader("viewM", camera->getViewMatrix());
-	ResourceLoader::shaders[SHADER::TILE]->sendMatrixToShader("projM", camera->getProjMatrix());
-
-	ResourceLoader::shaders[SHADER::AABB]->sendMatrixToShader("viewM", camera->getViewMatrix());
-	ResourceLoader::shaders[SHADER::AABB]->sendMatrixToShader("projM", camera->getProjMatrix());
 
 	//LIGHTS////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//Directional light
@@ -44,7 +28,7 @@ bool Level0::OnEnter() {
 
 	//MAPS//////////////////////////////////////////////////////////////////////////////////////////////////////////
 	map = std::make_unique<Map>();
-	if (!map->Load(ResourceLoader::meshes[MESH::TILE], ResourceLoader::shaders[SHADER::TILE], ResourceLoader::textures[TEXTURE::PALETTE])) {
+	if (!map->Load("Resources\\Maps\\Level3.txt", ResourceLoader::meshes, ResourceLoader::shaders[SHADER::TILE], ResourceLoader::textures[TEXTURE::PALETTE])) {
 		return false;
 	}
 
@@ -59,6 +43,10 @@ bool Level0::OnEnter() {
 	ground->setModelMatrix(glm::translate(glm::mat4{ 1.0f }, glm::vec3{ 6.0f, 0.0f, -6.0f }));
 	ground->setNormalMatrix(glm::transpose(glm::inverse(ground->getModelMatrix())));
 
+	grass = std::make_unique<DemoObject>(ResourceLoader::meshes[MESH::GRASS], ResourceLoader::shaders[SHADER::LAMBERT], ResourceLoader::textures[TEXTURE::PALETTE]);
+	grass->setModelMatrix(glm::translate(glm::mat4{ 1.0f }, glm::vec3{ 6.0f, 0.0f, -6.0f }));
+	grass->setNormalMatrix(glm::transpose(glm::inverse(grass->getModelMatrix())));
+
 	//PLAYER////////////////////////////////////////////////////////////////////////////////////////////////////////
 	player = std::make_unique<Player>();
 	if (!player->Load(ResourceLoader::meshes[MESH::PLAYER], ResourceLoader::shaders[SHADER::LAMBERT], ResourceLoader::textures[TEXTURE::PALETTE]))
@@ -67,16 +55,33 @@ bool Level0::OnEnter() {
 	player->getPlayerObject()->setModelMatrix(glm::translate(glm::mat4{ 1.0f }, player->getPosition()));
 	player->getPlayerObject()->setNormalMatrix(glm::transpose(glm::inverse(player->getPlayerObject()->getModelMatrix())));
 
+	//CAMERA/////////////////////////////////////////////////
+	auto mapMidPoint = 10.0f;
+	auto cameraHeight = 20.0f;
+	auto cameraOffset = 10.0f;
+	camera = std::make_unique<Camera>();
+	camera->SetUpCamera(mapMidPoint, cameraHeight, cameraOffset);
+
+	//VIEW AND PROJ MATRIX TO SHADER
+	ResourceLoader::shaders[SHADER::LAMBERT]->sendMatrixToShader("viewM", camera->getViewMatrix());
+	ResourceLoader::shaders[SHADER::LAMBERT]->sendMatrixToShader("projM", camera->getProjMatrix());
+
+	ResourceLoader::shaders[SHADER::TILE]->sendMatrixToShader("viewM", camera->getViewMatrix());
+	ResourceLoader::shaders[SHADER::TILE]->sendMatrixToShader("projM", camera->getProjMatrix());
+
+	ResourceLoader::shaders[SHADER::AABB]->sendMatrixToShader("viewM", camera->getViewMatrix());
+	ResourceLoader::shaders[SHADER::AABB]->sendMatrixToShader("projM", camera->getProjMatrix());
+
 	return true;
 }
 
-bool Level0::OnExit()
+bool Level3::OnExit()
 {
-	std::cout << "Exiting Level0!\n";
+	std::cout << "Exiting Level2!\n";
 	return true;
 }
 
-void Level0::HandleEvents(const SDL_Event &ev) {
+void Level3::HandleEvents(const SDL_Event &ev) {
 	player->HandleEvents(ev);
 
 	if (ev.type == SDL_KEYDOWN) {
@@ -106,7 +111,7 @@ void Level0::HandleEvents(const SDL_Event &ev) {
 	}
 }
 
-void Level0::Update(float deltatime) {
+void Level3::Update(float deltatime) {
 	player->Update(deltatime);
 
 	for (const auto& tile : map->getTiles()) {
@@ -139,13 +144,14 @@ void Level0::Update(float deltatime) {
 	}
 }
 
-void Level0::Render() {
+void Level3::Render() {
 
 	glEnable(GL_DEPTH_TEST);
 	glClearColor(0, 0, 0, 1);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	ground->Render();
+	//grass->Render();
 	map->Render();
 	player->Render();
 }
