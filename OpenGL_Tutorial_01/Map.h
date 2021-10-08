@@ -3,6 +3,7 @@
 #include <memory>
 #include <vector>
 #include <string>
+#include <iterator>
 #include <map>
 #include "Observable.h"
 #include "CollisionObserver.h"
@@ -27,6 +28,8 @@ public:
 	bool checkMapForWin() const;
 	bool checkIfAllTilesTraversed() const;
 	bool checkMapForLose() const;
+
+	std::vector<std::unique_ptr<class Tile>>::const_iterator GetCurrentTileIndex() const;
 
 private:
 	std::vector<std::unique_ptr<class Tile>> tiles;

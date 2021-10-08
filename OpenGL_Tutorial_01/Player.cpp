@@ -71,7 +71,7 @@ void Player::Move(Map* map, const glm::vec3& direction)
 
 	for (const auto& tile : map->getTiles()) {
 
-		if (tile->getIsIntersecting() == true)
+		if (tile->getIsIntersecting() == true || tile->getIsBlock() == true)
 			continue;
 
 		if (Collisions::Intersection(rayFromPlayer, *tile->getAABB(), tile->getPosition())) {

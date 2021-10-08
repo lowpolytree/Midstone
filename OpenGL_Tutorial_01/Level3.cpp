@@ -123,12 +123,6 @@ void Level3::Update(float deltatime) {
 			tile->setIsIntersecting(false);
 		}
 
-		if (map->checkMapForLose()) {
-			std::cout << "You lost the game!\n";
-			Game::gameStateMachine->ChangeLevel(new GameOver());
-			break;
-		}
-
 		if (map->checkIfAllTilesTraversed()) {
 			if (map->checkMapForWin()) {
 				std::cout << "You win the game!\n";
@@ -140,6 +134,12 @@ void Level3::Update(float deltatime) {
 				Game::gameStateMachine->ChangeLevel(new GameOver());
 				break;
 			}
+		}
+
+		if (map->checkMapForLose()) {
+			std::cout << "You lost the game!\n";
+			Game::gameStateMachine->ChangeLevel(new GameOver());
+			break;
 		}
 	}
 }

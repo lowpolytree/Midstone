@@ -10,5 +10,5 @@ void QuitCommand::Execute()
 
 void PlayCommand::Execute()
 {
-	Game::gameStateMachine->ChangeLevel(new Level3());
+	Game::gameStateMachine->ChangeLevel(new Level2());
 }

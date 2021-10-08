@@ -56,6 +56,7 @@ bool Map::Load(const std::string_view filepath, std::map<MESH, std::shared_ptr<M
             auto tile = std::make_unique<Tile>();
             tile->Load(meshes[MESH::TILE_BLOCK], shader, tex);
             tile->setId(tileID); //tile ids are just numbers from 0 to n.
+            tile->setIsBlock(true);
             tiles.push_back(std::move(tile));
             tileID++;
         }
@@ -127,7 +128,6 @@ void Map::setTilePositions()
 }
 
 
-
 glm::vec3 Map::getStartingPosition()
 {
     glm::vec3 startingPosition;
@@ -143,15 +143,7 @@ glm::vec3 Map::getStartingPosition()
 
 bool Map::checkMapForWin() const
 {
-    bool isWin = false; 
-
-    //Check if the current tile is the last
-    auto currentTileIndex = std::find_if(tiles.begin(), tiles.end(), [](const std::unique_ptr<Tile>& tile)
-        {
-            return tile->getIsIntersecting() == true;
-        });
-
-    return (*currentTileIndex)->getIsLast() == true ? true : false;
+    return (*GetCurrentTileIndex())->getIsLast() == true ? true : false;
 }
 
 bool Map::checkIfAllTilesTraversed() const
@@ -164,8 +156,25 @@ bool Map::checkIfAllTilesTraversed() const
 
 bool Map::checkMapForLose() const
 {
-    return std::any_of(tiles.begin(), tiles.end(), [](const std::unique_ptr<Tile>& tile) {
+    bool isInterceptingLastTile = false;
+    auto currentTileIndex = GetCurrentTileIndex();
+
+    if (currentTileIndex != tiles.end()) {
+        isInterceptingLastTile = (*currentTileIndex)->getIsLast() == true;
+    }
+
+    bool hasInterceptedATileTwice = std::any_of(tiles.begin(), tiles.end(), [](const std::unique_ptr<Tile>& tile) {
         //If counter is greater than 1 then the player has intersected the same tile twice
         return tile->getIntersectCounter() > 1;
-     } );
+        });
+
+    return isInterceptingLastTile || hasInterceptedATileTwice;
+}
+
+std::vector<std::unique_ptr<class Tile>>::const_iterator Map::GetCurrentTileIndex() const
+{
+    return std::find_if(tiles.begin(), tiles.end(), [](const std::unique_ptr<Tile>& tile)
+        {
+            return tile->getIsIntersecting() == true;
+        });
 }
