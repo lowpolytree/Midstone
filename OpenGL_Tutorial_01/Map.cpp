@@ -29,6 +29,17 @@ bool Map::Load(const std::string_view filepath, std::map<MESH, std::shared_ptr<M
         }
             break;
 
+        case 'O': // o is a regular tile AND passthrough
+        {
+            auto tile = std::make_unique<Tile>();
+            tile->Load(meshes[MESH::TILE_BASE], shader, tex);
+            tile->setId(tileID); //tile ids are just numbers from 0 to n.
+            tile->setIsPassThrough(true);
+            tiles.push_back(std::move(tile));
+            tileID++;
+        }
+        break;
+
         case 'f': // f is goal
         {
             auto tile = std::make_unique<Tile>();
@@ -51,12 +62,25 @@ bool Map::Load(const std::string_view filepath, std::map<MESH, std::shared_ptr<M
         }
             break;
 
+        case 'S': // s is starting position AND passthrough
+        {
+            auto tile = std::make_unique<Tile>();
+            tile->Load(meshes[MESH::TILE_START], shader, tex);
+            tile->setId(tileID); //tile ids are just numbers from 0 to n.
+            tile->setIsFirst(true);
+            tile->setIsPassThrough(true);
+            tiles.push_back(std::move(tile));
+            tileID++;
+        }
+        break;
+
         case 'b': // blocks the wayW
         {
             auto tile = std::make_unique<Tile>();
             tile->Load(meshes[MESH::TILE_BLOCK], shader, tex);
             tile->setId(tileID); //tile ids are just numbers from 0 to n.
             tile->setIsBlock(true);
+            tile->setIsIntersectedOnce(true);
             tiles.push_back(std::move(tile));
             tileID++;
         }

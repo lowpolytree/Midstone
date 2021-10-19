@@ -1,4 +1,4 @@
-#include "Level1.h"
+#include "Level4.h"
 #include "LevelManager.h"
 #include "SDL.h"
 #include "DemoObject.h"
@@ -11,12 +11,12 @@
 #include "Tile.h"
 #include "Text.h"
 
-const std::string Level1::stateID = "LEVEL1";
+const std::string Level4::stateID = "LEVEL4";
 
-Level1::Level1(){}
+Level4::Level4(){}
 
-bool Level1::OnEnter() {
-	std::cout << "Entering Level1!\n";
+bool Level4::OnEnter() {
+	std::cout << "Entering Level4!\n";
 	//RESOURCES ARE LOADED IN THE MENU
 
 	//LIGHTS////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -27,7 +27,7 @@ bool Level1::OnEnter() {
 
 	//MAPS//////////////////////////////////////////////////////////////////////////////////////////////////////////
 	map = std::make_unique<Map>();
-	if (!map->Load("Resources\\Maps\\Level1.txt", ResourceLoader::meshes, ResourceLoader::shaders[SHADER::TILE], ResourceLoader::textures[TEXTURE::PALETTE])) {
+	if (!map->Load("Resources\\Maps\\Level4.txt", ResourceLoader::meshes, ResourceLoader::shaders[SHADER::TILE], ResourceLoader::textures[TEXTURE::PALETTE])) {
 		return false;
 	}
 
@@ -55,7 +55,7 @@ bool Level1::OnEnter() {
 	player->getPlayerObject()->setNormalMatrix(glm::transpose(glm::inverse(player->getPlayerObject()->getModelMatrix())));
 
 	//CAMERA/////////////////////////////////////////////////
-	auto mapMidPoint = 5.0f;
+	auto mapMidPoint = 10.0f;
 	auto cameraHeight = 20.0f;
 	auto cameraOffset = 10.0f;
 	camera = std::make_unique<Camera>();
@@ -74,13 +74,13 @@ bool Level1::OnEnter() {
 	return true;
 }
 
-bool Level1::OnExit()
+bool Level4::OnExit()
 {
-	std::cout << "Exiting Level1!\n";
+	std::cout << "Exiting Level4!\n";
 	return true;
 }
 
-void Level1::HandleEvents(const SDL_Event &ev) {
+void Level4::HandleEvents(const SDL_Event &ev) {
 	player->HandleEvents(ev);
 
 	if (ev.type == SDL_KEYDOWN) {
@@ -110,7 +110,7 @@ void Level1::HandleEvents(const SDL_Event &ev) {
 	}
 }
 
-void Level1::Update(float deltatime) {
+void Level4::Update(float deltatime) {
 	player->Update(deltatime);
 
 	for (const auto& tile : map->getTiles()) {
@@ -125,8 +125,7 @@ void Level1::Update(float deltatime) {
 		if (map->checkIfAllTilesTraversed()) {
 			if (map->checkMapForWin()) {
 				std::cout << "You win the game!\n";
-				LevelManager::levelCounter++;
-				LevelManager::LoadLevel(Scene::LEVEL);
+				LevelManager::LoadLevel(Scene::GAME_OVER);
 				break;
 			}
 			else {
@@ -144,7 +143,7 @@ void Level1::Update(float deltatime) {
 	}
 }
 
-void Level1::Render() {
+void Level4::Render() {
 
 	glEnable(GL_DEPTH_TEST);
 	glClearColor(0, 0, 0, 1);

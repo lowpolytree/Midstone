@@ -1,7 +1,5 @@
 #include "Command.h"
-#include "Level1.h"
-#include "Level2.h"
-#include "Level3.h"
+#include "LevelManager.h"
 
 void QuitCommand::Execute()
 {
@@ -10,5 +8,10 @@ void QuitCommand::Execute()
 
 void PlayCommand::Execute()
 {
-	Game::gameStateMachine->ChangeLevel(new Level2());
+	LevelManager::LoadLevel(Scene::LEVEL);
+}
+
+void ReplayCommand::Execute()
+{
+	LevelManager::LoadLevel(Scene::LEVEL);
 }

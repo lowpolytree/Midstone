@@ -19,3 +19,9 @@ class PlayCommand : public Command
 public:
 	virtual void Execute() override;
 };
+
+class ReplayCommand : public Command 
+{
+public:
+	virtual void Execute() override;
+};

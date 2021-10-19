@@ -41,9 +41,11 @@ public:
 	bool getIsFirst() const { return isFirst; }
 	bool getIsLast() const { return isLast; }
 	bool getIsBlock() const { return isBlock; }
+	bool getIsPassThrough() const { return isPassThrough; }
 	void setIsFirst(bool status) { isFirst = status; }
 	void setIsLast(bool status) { isLast = status; }
 	void setIsBlock(bool status) { isBlock = status; }
+	void setIsPassThrough(bool status) { isPassThrough = status; }
 
 private:
 	std::unique_ptr<class DemoObject> tile;
@@ -56,5 +58,6 @@ private:
 	bool isFirst;
 	bool isLast;
 	bool isBlock;
+	bool isPassThrough;
 };
 

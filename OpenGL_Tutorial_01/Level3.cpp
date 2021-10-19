@@ -1,6 +1,5 @@
 #include "Level3.h"
-#include "Game.h"
-#include "GameOver.h"
+#include "LevelManager.h"
 #include "SDL.h"
 #include "DemoObject.h"
 #include "ResourceLoader.h"
@@ -17,7 +16,7 @@ const std::string Level3::stateID = "LEVEL3";
 Level3::Level3(){}
 
 bool Level3::OnEnter() {
-	std::cout << "Entering Level2!\n";
+	std::cout << "Entering Level3!\n";
 	//RESOURCES ARE LOADED IN THE MENU
 
 	//LIGHTS////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -77,7 +76,7 @@ bool Level3::OnEnter() {
 
 bool Level3::OnExit()
 {
-	std::cout << "Exiting Level2!\n";
+	std::cout << "Exiting Level3!\n";
 	return true;
 }
 
@@ -126,19 +125,20 @@ void Level3::Update(float deltatime) {
 		if (map->checkIfAllTilesTraversed()) {
 			if (map->checkMapForWin()) {
 				std::cout << "You win the game!\n";
-				Game::gameStateMachine->ChangeLevel(new GameOver());
+				LevelManager::levelCounter++;
+				LevelManager::LoadLevel(Scene::LEVEL);
 				break;
 			}
 			else {
 				std::cout << "You lost the game!\n";
-				Game::gameStateMachine->ChangeLevel(new GameOver());
+				LevelManager::LoadLevel(Scene::GAME_OVER);
 				break;
 			}
 		}
 
 		if (map->checkMapForLose()) {
 			std::cout << "You lost the game!\n";
-			Game::gameStateMachine->ChangeLevel(new GameOver());
+			LevelManager::LoadLevel(Scene::GAME_OVER);
 			break;
 		}
 	}

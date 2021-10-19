@@ -1,6 +1,5 @@
 #include "Level2.h"
-#include "Game.h"
-#include "GameOver.h"
+#include "LevelManager.h"
 #include "SDL.h"
 #include "DemoObject.h"
 #include "ResourceLoader.h"
@@ -126,19 +125,20 @@ void Level2::Update(float deltatime) {
 		if (map->checkIfAllTilesTraversed()) {
 			if (map->checkMapForWin()) {
 				std::cout << "You win the game!\n";
-				Game::gameStateMachine->ChangeLevel(new GameOver());
+				LevelManager::levelCounter++;
+				LevelManager::LoadLevel(Scene::LEVEL);
 				break;
 			}
 			else {
 				std::cout << "You lost the game!\n";
-				Game::gameStateMachine->ChangeLevel(new GameOver());
+				LevelManager::LoadLevel(Scene::GAME_OVER);
 				break;
 			}
 		}
 
 		if (map->checkMapForLose()) {
 			std::cout << "You lost the game!\n";
-			Game::gameStateMachine->ChangeLevel(new GameOver());
+			LevelManager::LoadLevel(Scene::GAME_OVER);
 			break;
 		}
 	}

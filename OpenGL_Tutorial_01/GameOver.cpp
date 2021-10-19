@@ -7,7 +7,7 @@ const std::string GameOver::stateID = "GAMEOVER";
 bool GameOver::OnEnter()
 {
 	std::cout << "Entering GameOver!\n";
-	buttons.push_back(std::make_shared<Button>(Position{ 1280 / 2, 500 }, Size{ 256.0f, 68.0f }, "REPLAY", std::make_unique<PlayCommand>()));
+	buttons.push_back(std::make_shared<Button>(Position{ 1280 / 2, 500 }, Size{ 256.0f, 68.0f }, "REPLAY", std::make_unique<ReplayCommand>()));
 	buttons.push_back(std::make_shared<Button>(Position{ 1280 / 2, 400 }, Size{ 256.0f, 68.0f }, "QUIT", std::make_unique<QuitCommand>()));
 
 	return true;

@@ -11,6 +11,7 @@ Tile::Tile(){
 	isFirst = false;
 	isLast = false;
 	isBlock = false;
+	isPassThrough = false;
 }
 
 Tile::~Tile(){}
