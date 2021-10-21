@@ -32,7 +32,7 @@ bool Map::Load(const std::string_view filepath, std::map<MESH, std::shared_ptr<M
         case 'O': // o is a regular tile AND passthrough
         {
             auto tile = std::make_unique<Tile>();
-            tile->Load(meshes[MESH::TILE_BASE], shader, tex);
+            tile->Load(meshes[MESH::TILE_PASSTHROUGH], shader, tex);
             tile->setId(tileID); //tile ids are just numbers from 0 to n.
             tile->setIsPassThrough(true);
             tiles.push_back(std::move(tile));
@@ -65,7 +65,7 @@ bool Map::Load(const std::string_view filepath, std::map<MESH, std::shared_ptr<M
         case 'S': // s is starting position AND passthrough
         {
             auto tile = std::make_unique<Tile>();
-            tile->Load(meshes[MESH::TILE_START], shader, tex);
+            tile->Load(meshes[MESH::TILE_START_PASSTHROUGH], shader, tex);
             tile->setId(tileID); //tile ids are just numbers from 0 to n.
             tile->setIsFirst(true);
             tile->setIsPassThrough(true);
@@ -174,6 +174,7 @@ bool Map::checkIfAllTilesTraversed() const
 {
     return std::all_of(tiles.begin(), tiles.end(), [](const std::unique_ptr<Tile>& tile)
         {
+
             return tile->getIsIntersectedOnce() == true;
         });
 }
@@ -187,9 +188,11 @@ bool Map::checkMapForLose() const
         isInterceptingLastTile = (*currentTileIndex)->getIsLast() == true;
     }
 
-    bool hasInterceptedATileTwice = std::any_of(tiles.begin(), tiles.end(), [](const std::unique_ptr<Tile>& tile) {
+    bool hasInterceptedATileTwice = std::any_of(tiles.begin(), tiles.end(), [](const std::unique_ptr<Tile>& tile) 
+        {
         //If counter is greater than 1 then the player has intersected the same tile twice
-        return tile->getIntersectCounter() > 1;
+            if (tile->getIsPassThrough() == true) return false;
+            return tile->getIntersectCounter() > 1;
         });
 
     return isInterceptingLastTile || hasInterceptedATileTwice;

@@ -125,7 +125,8 @@ void Level4::Update(float deltatime) {
 		if (map->checkIfAllTilesTraversed()) {
 			if (map->checkMapForWin()) {
 				std::cout << "You win the game!\n";
-				LevelManager::LoadLevel(Scene::GAME_OVER);
+				LevelManager::levelCounter++;
+				LevelManager::LoadLevel(Scene::LEVEL);
 				break;
 			}
 			else {

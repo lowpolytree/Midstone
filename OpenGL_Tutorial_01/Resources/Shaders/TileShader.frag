@@ -28,7 +28,7 @@ void main()
 	float final = min(ambient + diffuse, 1.0);
 
 	if (isIntersectedOnce){
-		FragColor = vec4(tex * 0.8, 1.0);
+		FragColor = vec4(tex * 0.5, 1.0);
 	} else {
 		FragColor = vec4(final * tex, 1.0);
 	}

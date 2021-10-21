@@ -36,6 +36,16 @@ bool ResourceLoader::LoadResources()
 
 	meshes.insert(std::make_pair(MESH::TILE_BLOCK, std::make_shared<Mesh>(OBJLoader::vertices, OBJLoader::uvs, OBJLoader::normals)));
 
+	if (!OBJLoader::loadOBJ("Resources\\Models\\Tile_Passthrough.obj"))
+		return false;
+
+	meshes.insert(std::make_pair(MESH::TILE_PASSTHROUGH, std::make_shared<Mesh>(OBJLoader::vertices, OBJLoader::uvs, OBJLoader::normals)));
+
+	if (!OBJLoader::loadOBJ("Resources\\Models\\Tile_Start_Passthrough.obj"))
+		return false;
+
+	meshes.insert(std::make_pair(MESH::TILE_START_PASSTHROUGH, std::make_shared<Mesh>(OBJLoader::vertices, OBJLoader::uvs, OBJLoader::normals)));
+
 	//ENVIRONMENT
 	if (!OBJLoader::loadOBJ("Resources\\Models\\Ground.obj"))
 		return false;

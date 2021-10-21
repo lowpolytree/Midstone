@@ -15,12 +15,12 @@ void LevelManager::LoadLevel(const Scene type)
 		Game::gameStateMachine->ChangeLevel(new GameOver());
 	}
 
-	if (type == Scene::LEVEL)
-	{
-		Game::gameStateMachine->ChangeLevel(new Level5());
-	}
+	//if (type == Scene::LEVEL)
+	//{
+	//	Game::gameStateMachine->ChangeLevel(new Level5());
+	//}
 
-	/*if (type == Scene::LEVEL) {
+	if (type == Scene::LEVEL) {
 		switch (levelCounter) 
 		{
 			case 1:
@@ -35,6 +35,9 @@ void LevelManager::LoadLevel(const Scene type)
 			case 4:
 				Game::gameStateMachine->ChangeLevel(new Level4());
 			break;
+			case 5:
+				Game::gameStateMachine->ChangeLevel(new Level5());
+			break;
 		}
-	}*/
+	}
 }
