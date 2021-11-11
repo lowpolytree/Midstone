@@ -21,5 +21,5 @@ void main()
 
 	float final = min(ambient + diffuse, 1.0);
 
-	FragColor = vec4(final * tex, 1.0);
+	FragColor = vec4(tex, 1.0);
 }

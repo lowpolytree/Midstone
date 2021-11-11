@@ -39,12 +39,8 @@ bool Level1::OnEnter() {
 	//ENVIRONMENT ASSETS
 	//GROUND
 	ground = std::make_unique<DemoObject>(ResourceLoader::meshes[MESH::GROUND], ResourceLoader::shaders[SHADER::LAMBERT], ResourceLoader::textures[TEXTURE::PALETTE]);
-	ground->setModelMatrix(glm::translate(glm::mat4{ 1.0f }, glm::vec3{ 6.0f, 0.0f, -6.0f }));
+	ground->setModelMatrix(glm::translate(glm::mat4{ 1.0f }, glm::vec3{ 0.0f, 0.0f, 0.0f }));
 	ground->setNormalMatrix(glm::transpose(glm::inverse(ground->getModelMatrix())));
-
-	grass = std::make_unique<DemoObject>(ResourceLoader::meshes[MESH::GRASS], ResourceLoader::shaders[SHADER::LAMBERT], ResourceLoader::textures[TEXTURE::PALETTE]);
-	grass->setModelMatrix(glm::translate(glm::mat4{ 1.0f }, glm::vec3{ 6.0f, 0.0f, -6.0f }));
-	grass->setNormalMatrix(glm::transpose(glm::inverse(grass->getModelMatrix())));
 
 	//PLAYER////////////////////////////////////////////////////////////////////////////////////////////////////////
 	player = std::make_unique<Player>();
@@ -55,9 +51,9 @@ bool Level1::OnEnter() {
 	player->getPlayerObject()->setNormalMatrix(glm::transpose(glm::inverse(player->getPlayerObject()->getModelMatrix())));
 
 	//CAMERA/////////////////////////////////////////////////
-	auto mapMidPoint = 5.0f;
+	auto mapMidPoint = 4.0f;
 	auto cameraHeight = 20.0f;
-	auto cameraOffset = 10.0f;
+	auto cameraOffset = 15.0f;
 	camera = std::make_unique<Camera>();
 	camera->SetUpCamera(mapMidPoint, cameraHeight, cameraOffset);
 
@@ -151,7 +147,6 @@ void Level1::Render() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	ground->Render();
-	//grass->Render();
 	map->Render();
 	player->Render();
 }

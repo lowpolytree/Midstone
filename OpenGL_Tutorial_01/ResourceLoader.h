@@ -15,7 +15,6 @@ enum class MESH {
 	TILE_START_PASSTHROUGH,
 	PLAYER,
 	GROUND,
-	GRASS
 };
 
 enum class TEXTURE {

@@ -52,11 +52,6 @@ bool ResourceLoader::LoadResources()
 
 	meshes.insert(std::make_pair(MESH::GROUND, std::make_shared<Mesh>(OBJLoader::vertices, OBJLoader::uvs, OBJLoader::normals)));
 
-	if (!OBJLoader::loadOBJ("Resources\\Models\\Grass.obj"))
-		return false;
-
-	meshes.insert(std::make_pair(MESH::GRASS, std::make_shared<Mesh>(OBJLoader::vertices, OBJLoader::uvs, OBJLoader::normals)));
-
 	//LOADING TEXTURES
 	textures.insert(std::make_pair(TEXTURE::PALETTE, std::make_shared<Texture>()));
 	textures[TEXTURE::PALETTE]->loadTexture("Resources\\Art\\t_colors.png");

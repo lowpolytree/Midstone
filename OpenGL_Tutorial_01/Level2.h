@@ -24,7 +24,6 @@ private:
 	std::unique_ptr<class Camera> camera;
 	std::unique_ptr<class Map> map;
 	std::unique_ptr<class DemoObject> ground;
-	std::unique_ptr<class DemoObject> grass;
 	std::unique_ptr<class Player> player;
 
 	static const std::string stateID;

@@ -1,6 +1,6 @@
-s o f
+s b f
 o o o
-o o o
+o o b
 
 
 

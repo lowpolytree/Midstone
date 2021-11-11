@@ -5,7 +5,7 @@
 #include "MapReader.h"
 #include "ResourceLoader.h"
 
-constexpr int TILE_OFFSET = 5;
+constexpr float TILE_OFFSET = 4.0f;
 
 Map::Map() {}
 Map::~Map() {}

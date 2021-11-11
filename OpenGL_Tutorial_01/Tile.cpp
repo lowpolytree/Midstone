@@ -39,6 +39,7 @@ void Tile::Render() {
 	//Think about sending a batch of bools instead of one by one
 	tile->getShader()->sendBoolToShader("isIntersectedOnce", isIntersectedOnce);
 	tile->getShader()->sendBoolToShader("isLast", isLast);
+	tile->getShader()->sendBoolToShader("isBlock", isBlock);
 	tile->Render();
 
 	aabb->setParentModelMatrix(tile->getModelMatrix());
