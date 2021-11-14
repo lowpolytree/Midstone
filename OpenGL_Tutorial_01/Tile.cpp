@@ -6,6 +6,7 @@
 #include "AABB.h"
 
 Tile::Tile(){
+	intersectCounter = 0;
 	isIntersecting = false;
 	isIntersectedOnce = false;
 	isFirst = false;

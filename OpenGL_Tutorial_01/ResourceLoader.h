@@ -14,7 +14,10 @@ enum class MESH {
 	TILE_PASSTHROUGH,
 	TILE_START_PASSTHROUGH,
 	PLAYER,
-	GROUND,
+	GROUND1,
+	GROUND2,
+	GROUND3,
+	FLAME
 };
 
 enum class TEXTURE {
@@ -28,6 +31,7 @@ enum class SHADER {
 	TEXT,
 	UI,
 	TILE,
+	FIRE
 };
 
 class ResourceLoader

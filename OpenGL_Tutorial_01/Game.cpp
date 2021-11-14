@@ -7,6 +7,7 @@
 #include "ResourceLoader.h"
 #include "Menu.h"
 #include "GameOver.h"
+#include "LevelTest.h"
 
 bool Game::s_isRunning = false;
 SDL_Window* Game::win = nullptr;
@@ -82,8 +83,9 @@ void Game::Create(){
 	if (gameStateMachine == nullptr) {
 		std::cout << "The Game State Machine failed to build!\n";
 	}
-	//gameStateMachine->ChangeLevel(new Level0());
+
 	gameStateMachine->PushLevel(new Menu());
+	//gameStateMachine->PushLevel(new LevelTest());
 }
 
 void Game::Run(){

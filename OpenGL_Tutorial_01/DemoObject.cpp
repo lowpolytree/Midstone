@@ -44,3 +44,10 @@ void DemoObject::sendVec3ToShader(const std::string& name, const glm::vec3& v)
 	const auto loc = glGetUniformLocation(shader->getShaderID(), name.c_str());
 	glUniform3fv(loc, 1, glm::value_ptr(v));
 }
+
+void DemoObject::sendFloatToShader(const std::string& name, const float v)
+{
+	shader->useProgram();
+	const auto loc = glGetUniformLocation(shader->getShaderID(), name.c_str());
+	glUniform1f(loc, v);
+}

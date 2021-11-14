@@ -38,8 +38,8 @@ bool Level5::OnEnter() {
 
 	//ENVIRONMENT ASSETS
 	//GROUND
-	ground = std::make_unique<DemoObject>(ResourceLoader::meshes[MESH::GROUND], ResourceLoader::shaders[SHADER::LAMBERT], ResourceLoader::textures[TEXTURE::PALETTE]);
-	ground->setModelMatrix(glm::translate(glm::mat4{ 1.0f }, glm::vec3{ 6.0f, 0.0f, -6.0f }));
+	ground = std::make_unique<DemoObject>(ResourceLoader::meshes[MESH::GROUND3], ResourceLoader::shaders[SHADER::LAMBERT], ResourceLoader::textures[TEXTURE::PALETTE]);
+	ground->setModelMatrix(glm::translate(glm::mat4{ 1.0f }, glm::vec3{ 0.0f, 0.0f, 0.0f }));
 	ground->setNormalMatrix(glm::transpose(glm::inverse(ground->getModelMatrix())));
 
 	//PLAYER////////////////////////////////////////////////////////////////////////////////////////////////////////

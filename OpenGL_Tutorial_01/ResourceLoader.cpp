@@ -47,10 +47,25 @@ bool ResourceLoader::LoadResources()
 	meshes.insert(std::make_pair(MESH::TILE_START_PASSTHROUGH, std::make_shared<Mesh>(OBJLoader::vertices, OBJLoader::uvs, OBJLoader::normals)));
 
 	//ENVIRONMENT
-	if (!OBJLoader::loadOBJ("Resources\\Models\\Ground.obj"))
+	if (!OBJLoader::loadOBJ("Resources\\Models\\Ground1.obj"))
 		return false;
 
-	meshes.insert(std::make_pair(MESH::GROUND, std::make_shared<Mesh>(OBJLoader::vertices, OBJLoader::uvs, OBJLoader::normals)));
+	meshes.insert(std::make_pair(MESH::GROUND1, std::make_shared<Mesh>(OBJLoader::vertices, OBJLoader::uvs, OBJLoader::normals)));
+
+	if (!OBJLoader::loadOBJ("Resources\\Models\\Ground2.obj"))
+		return false;
+
+	meshes.insert(std::make_pair(MESH::GROUND2, std::make_shared<Mesh>(OBJLoader::vertices, OBJLoader::uvs, OBJLoader::normals)));
+
+	if (!OBJLoader::loadOBJ("Resources\\Models\\Ground3.obj"))
+		return false;
+
+	meshes.insert(std::make_pair(MESH::GROUND3, std::make_shared<Mesh>(OBJLoader::vertices, OBJLoader::uvs, OBJLoader::normals)));
+
+	if (!OBJLoader::loadOBJ("Resources\\Models\\Flame.obj"))
+		return false;
+
+	meshes.insert(std::make_pair(MESH::FLAME, std::make_shared<Mesh>(OBJLoader::vertices, OBJLoader::uvs, OBJLoader::normals)));
 
 	//LOADING TEXTURES
 	textures.insert(std::make_pair(TEXTURE::PALETTE, std::make_shared<Texture>()));
@@ -64,6 +79,7 @@ bool ResourceLoader::LoadResources()
 	shaders.insert(std::make_pair(SHADER::TEXT, std::make_shared<Shader>("Resources\\Shaders\\TextShader.vert", "Resources\\Shaders\\TextShader.frag")));
 	shaders.insert(std::make_pair(SHADER::UI, std::make_shared<Shader>("Resources\\Shaders\\UIShader.vert", "Resources\\Shaders\\UIShader.frag")));
 	shaders.insert(std::make_pair(SHADER::TILE, std::make_shared<Shader>("Resources\\Shaders\\TileShader.vert", "Resources\\Shaders\\TileShader.frag")));
+	shaders.insert(std::make_pair(SHADER::FIRE, std::make_shared<Shader>("Resources\\Shaders\\FireShader.vert", "Resources\\Shaders\\FireShader.frag")));
 
 	return true;
 }

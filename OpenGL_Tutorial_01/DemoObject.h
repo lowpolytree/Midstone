@@ -32,6 +32,7 @@ public:
 
 	void sendMat4ToShader(const std::string& name, const glm::mat4& m);
 	void sendVec3ToShader(const std::string& name, const glm::vec3& v);
+	void sendFloatToShader(const std::string& name, const float v);
 
 private:
 	std::shared_ptr<Shader> shader;

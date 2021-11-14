@@ -25,6 +25,7 @@ private:
 	std::unique_ptr<class Map> map;
 	std::unique_ptr<class DemoObject> ground;
 	std::unique_ptr<class Player> player;
+	std::unique_ptr<class Fire> fire;
 
 	static const std::string stateID;
 };

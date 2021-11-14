@@ -10,17 +10,19 @@ class LevelTest : public Level
 {
 public:
 	LevelTest();
-	~LevelTest();
 
-	bool Create();
-	void HandleEvents(const SDL_Event& ev);
-	void Update(float deltatime);
-	void Render();
+	bool OnEnter() override;
+	bool OnExit() override;
+
+	void HandleEvents(const SDL_Event& ev) override;
+	void Update(float deltatime) override;
+	void Render() override;
+
+	virtual std::string getStateID() const override { return ""; }
 
 private:
 	std::unique_ptr<class Camera> camera;
-	std::unique_ptr<class Player> player;
-	std::unique_ptr<class Player> player1;
+	std::unique_ptr<class Fire> fire;
 
 	float tempdeltatime;
 };

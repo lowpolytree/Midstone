@@ -38,8 +38,8 @@ bool Level3::OnEnter() {
 
 	//ENVIRONMENT ASSETS
 	//GROUND
-	ground = std::make_unique<DemoObject>(ResourceLoader::meshes[MESH::GROUND], ResourceLoader::shaders[SHADER::LAMBERT], ResourceLoader::textures[TEXTURE::PALETTE]);
-	ground->setModelMatrix(glm::translate(glm::mat4{ 1.0f }, glm::vec3{ 6.0f, 0.0f, -6.0f }));
+	ground = std::make_unique<DemoObject>(ResourceLoader::meshes[MESH::GROUND3], ResourceLoader::shaders[SHADER::LAMBERT], ResourceLoader::textures[TEXTURE::PALETTE]);
+	ground->setModelMatrix(glm::translate(glm::mat4{ 1.0f }, glm::vec3{ 0.0f, 0.0f, 0.0f }));
 	ground->setNormalMatrix(glm::transpose(glm::inverse(ground->getModelMatrix())));
 
 	//PLAYER////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -53,7 +53,7 @@ bool Level3::OnEnter() {
 	//CAMERA/////////////////////////////////////////////////
 	auto mapMidPoint = 8.0f;
 	auto cameraHeight = 18.0f;
-	auto cameraOffset = 13.0f;
+	auto cameraOffset = 12.0f;
 	camera = std::make_unique<Camera>();
 	camera->SetUpCamera(mapMidPoint, cameraHeight, cameraOffset);
 

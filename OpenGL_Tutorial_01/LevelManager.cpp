@@ -15,11 +15,6 @@ void LevelManager::LoadLevel(const Scene type)
 		Game::gameStateMachine->ChangeLevel(new GameOver());
 	}
 
-	//if (type == Scene::LEVEL)
-	//{
-	//	Game::gameStateMachine->ChangeLevel(new Level5());
-	//}
-
 	if (type == Scene::LEVEL) {
 		switch (levelCounter) 
 		{

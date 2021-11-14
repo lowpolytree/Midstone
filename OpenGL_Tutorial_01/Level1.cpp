@@ -10,6 +10,7 @@
 #include "Collisions.h"
 #include "Tile.h"
 #include "Text.h"
+#include "Fire.h"
 
 const std::string Level1::stateID = "LEVEL1";
 
@@ -38,9 +39,13 @@ bool Level1::OnEnter() {
 
 	//ENVIRONMENT ASSETS
 	//GROUND
-	ground = std::make_unique<DemoObject>(ResourceLoader::meshes[MESH::GROUND], ResourceLoader::shaders[SHADER::LAMBERT], ResourceLoader::textures[TEXTURE::PALETTE]);
+	ground = std::make_unique<DemoObject>(ResourceLoader::meshes[MESH::GROUND1], ResourceLoader::shaders[SHADER::LAMBERT], ResourceLoader::textures[TEXTURE::PALETTE]);
 	ground->setModelMatrix(glm::translate(glm::mat4{ 1.0f }, glm::vec3{ 0.0f, 0.0f, 0.0f }));
 	ground->setNormalMatrix(glm::transpose(glm::inverse(ground->getModelMatrix())));
+
+	//FIRE
+	fire = std::make_unique<Fire>();
+	fire->Load(ResourceLoader::meshes[MESH::FLAME], ResourceLoader::shaders[SHADER::FIRE], ResourceLoader::textures[TEXTURE::PALETTE]);
 
 	//PLAYER////////////////////////////////////////////////////////////////////////////////////////////////////////
 	player = std::make_unique<Player>();
@@ -66,6 +71,9 @@ bool Level1::OnEnter() {
 
 	ResourceLoader::shaders[SHADER::AABB]->sendMatrixToShader("viewM", camera->getViewMatrix());
 	ResourceLoader::shaders[SHADER::AABB]->sendMatrixToShader("projM", camera->getProjMatrix());
+
+	ResourceLoader::shaders[SHADER::FIRE]->sendMatrixToShader("viewM", camera->getViewMatrix());
+	ResourceLoader::shaders[SHADER::FIRE]->sendMatrixToShader("projM", camera->getProjMatrix());
 
 	return true;
 }
@@ -108,6 +116,7 @@ void Level1::HandleEvents(const SDL_Event &ev) {
 
 void Level1::Update(float deltatime) {
 	player->Update(deltatime);
+	fire->Update(deltatime);
 
 	for (const auto& tile : map->getTiles()) {
 
@@ -149,5 +158,6 @@ void Level1::Render() {
 	ground->Render();
 	map->Render();
 	player->Render();
+	fire->Render();
 }
 

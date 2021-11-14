@@ -154,6 +154,7 @@
     <ClCompile Include="Collisions.cpp" />
     <ClCompile Include="Command.cpp" />
     <ClCompile Include="DemoObject.cpp" />
+    <ClCompile Include="Fire.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameOver.cpp" />
     <ClCompile Include="GameStateMachine.cpp" />
@@ -163,6 +164,7 @@
     <ClCompile Include="Level4.cpp" />
     <ClCompile Include="Level5.cpp" />
     <ClCompile Include="LevelManager.cpp" />
+    <ClCompile Include="LevelTest.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MapReader.cpp" />
@@ -190,6 +192,7 @@
     <ClInclude Include="Collisions.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="DemoObject.h" />
+    <ClInclude Include="Fire.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameOver.h" />
@@ -201,6 +204,7 @@
     <ClInclude Include="Level4.h" />
     <ClInclude Include="Level5.h" />
     <ClInclude Include="LevelManager.h" />
+    <ClInclude Include="LevelTest.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MapReader.h" />
     <ClInclude Include="Menu.h" />
@@ -230,6 +234,8 @@
     <None Include="InstancedVertShader.vert" />
     <None Include="Resources\Shaders\BoundingBox.frag" />
     <None Include="Resources\Shaders\BoundingBox.vert" />
+    <None Include="Resources\Shaders\FireShader.frag" />
+    <None Include="Resources\Shaders\FireShader.vert" />
     <None Include="Resources\Shaders\LambertShader.frag" />
     <None Include="Resources\Shaders\LambertShader.vert" />
     <None Include="Resources\Shaders\TextShader.frag" />
