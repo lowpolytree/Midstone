@@ -46,6 +46,7 @@ bool Level1::OnEnter() {
 	//FIRE
 	fire = std::make_unique<Fire>();
 	fire->Load(ResourceLoader::meshes[MESH::FLAME], ResourceLoader::shaders[SHADER::FIRE], ResourceLoader::textures[TEXTURE::PALETTE]);
+	fire->SetPosition(glm::vec3{ 14.0f, 1.2f, -0.2f });
 
 	//PLAYER////////////////////////////////////////////////////////////////////////////////////////////////////////
 	player = std::make_unique<Player>();

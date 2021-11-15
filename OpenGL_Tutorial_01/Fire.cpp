@@ -5,10 +5,9 @@
 #include "Shader.h"
 #include "Texture.h"
 
-Fire::Fire(): position1(13.8f, 1.0f, -0.2f), time1(0.0f),
-			  position2(14.0f, 1.0f, -0.4f), time2(-0.34f),
-			  position3(14.2f, 1.0f,  0.0f), time3(-0.68f)
-{}
+Fire::Fire() : position1{ glm::vec3{0.0f} }, time1(0.0f),
+			   position2{ glm::vec3{0.0f} }, time2(0.0f),
+			   position3{ glm::vec3{0.0f} }, time3(0.0f){}
 
 bool Fire::Load(const std::shared_ptr<class Mesh>& mesh, const std::shared_ptr<class Shader>& shader, const std::shared_ptr<class Texture>& tex)
 {
@@ -60,4 +59,15 @@ void Fire::Render()
 	flame3->sendFloatToShader("time", time3);
 	if (time3 >= 0.0f)
 		flame3->Render();
+}
+
+void Fire::SetPosition(const glm::vec3& position)
+{
+	position1 = position;
+	position2 = glm::vec3(position.x + 0.2f, position.y, position.z + 0.2f);
+	position3 = glm::vec3(position.x - 0.2f, position.y, position.z - 0.2f);
+
+	time1 = 0.0f;
+	time2 = -0.34f;
+	time3 = -0.68f;
 }

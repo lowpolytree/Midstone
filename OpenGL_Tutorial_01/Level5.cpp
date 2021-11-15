@@ -10,6 +10,7 @@
 #include "Collisions.h"
 #include "Tile.h"
 #include "Text.h"
+#include "Fire.h"
 
 const std::string Level5::stateID = "LEVEL5";
 
@@ -41,6 +42,11 @@ bool Level5::OnEnter() {
 	ground = std::make_unique<DemoObject>(ResourceLoader::meshes[MESH::GROUND3], ResourceLoader::shaders[SHADER::LAMBERT], ResourceLoader::textures[TEXTURE::PALETTE]);
 	ground->setModelMatrix(glm::translate(glm::mat4{ 1.0f }, glm::vec3{ 0.0f, 0.0f, 0.0f }));
 	ground->setNormalMatrix(glm::transpose(glm::inverse(ground->getModelMatrix())));
+
+	//FIRE
+	fire = std::make_unique<Fire>();
+	fire->Load(ResourceLoader::meshes[MESH::FLAME], ResourceLoader::shaders[SHADER::FIRE], ResourceLoader::textures[TEXTURE::PALETTE]);
+	fire->SetPosition(glm::vec3{ 17.5f, 1.0f, -1.6f });
 
 	//PLAYER////////////////////////////////////////////////////////////////////////////////////////////////////////
 	player = std::make_unique<Player>();
@@ -108,6 +114,7 @@ void Level5::HandleEvents(const SDL_Event &ev) {
 
 void Level5::Update(float deltatime) {
 	player->Update(deltatime);
+	fire->Update(deltatime);
 
 	for (const auto& tile : map->getTiles()) {
 
@@ -148,5 +155,6 @@ void Level5::Render() {
 	ground->Render();
 	map->Render();
 	player->Render();
+	fire->Render();
 }
 

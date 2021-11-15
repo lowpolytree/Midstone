@@ -11,6 +11,8 @@ public:
 	void Update(float deltatime);
 	void Render();
 
+	void SetPosition(const glm::vec3& position);
+
 private:
 	std::unique_ptr<class DemoObject> flame1;
 	glm::vec3 position1;
