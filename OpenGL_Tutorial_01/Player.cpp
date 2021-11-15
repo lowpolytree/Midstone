@@ -8,10 +8,7 @@
 #include "Map.h"
 #include "Tile.h"
 
-Player::Player() {
-	isMoving = false;
-	timer = 0;
-}
+Player::Player(): isMoving(false), timer(0.0f), rotTimer(0.0f) {}
 
 Player::~Player() {}
 
@@ -36,7 +33,16 @@ bool Player::Load(const std::shared_ptr<Mesh>& mesh, const std::shared_ptr<Shade
 }
 
 void Player::Update(const float deltatime) {
-	player->setModelMatrix(glm::translate(glm::mat4{ 1.0f }, position));
+
+	//Rotates player
+	if (rotTimer > 1.0f)
+		rotTimer = 0.0f;
+
+	auto rotationAngle = glm::mix(0.0f, 360.0f, rotTimer);
+
+	rotTimer += deltatime * 0.005f;
+	
+	player->setModelMatrix(glm::translate(glm::mat4{ 1.0f }, position) * glm::rotate(glm::mat4{ 1.0f }, rotationAngle, glm::vec3{ 0.0f, 1.0f, 0.0f }));
 	aabb->setParentModelMatrix(player->getModelMatrix());
 
 	//std::cout << deltatime << "\n";

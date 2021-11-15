@@ -40,5 +40,6 @@ private:
 	glm::vec3 oldPosition;
 	bool isMoving;
 	float timer;
+	float rotTimer;
 };
 
