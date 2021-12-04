@@ -62,11 +62,12 @@ void Button::OnCreate()
 
     //TEXT
     text = std::make_unique<Text>();
-    text->Load("Resources\\Fonts\\Bubbleboddy_EL.ttf", 60, buttonText, SDL_Color{ 0, 0, 0, 0 });
+    text->Load("Resources\\Fonts\\Bubbleboddy_EL.ttf", 60, buttonText, SDL_Color{ 84, 64, 106, 255 });
     text->UpdateModel(PositionText{ size.width / 2.0f, 30.0f }, 1.0f, model);
 }
 
 void Button::HandleEvents(const SDL_Event& ev) {
+
     SDL_GetMouseState(&mouseX, &mouseY);
     //Remapping y coordinate to increment from the bottom.
     mouseY = -mouseY + 720;
@@ -100,13 +101,10 @@ void Button::Render()
     //Changing button state color
     switch (state) {
     case STATE::DEFAULT:
-        ResourceLoader::shaders[SHADER::UI]->sendVector3ToShader("color", glm::vec3(1.0f, 1.0f, 1.0f));
+        ResourceLoader::shaders[SHADER::UI]->sendVector3ToShader("color", glm::vec3(0.92f, 0.78f, 0.15f));
         break;
     case STATE::HOVER:
-        ResourceLoader::shaders[SHADER::UI]->sendVector3ToShader("color", glm::vec3(0.8f, 0.0f, 0.0f));
-        break;
-    case STATE::PRESSED:
-        ResourceLoader::shaders[SHADER::UI]->sendVector3ToShader("color", glm::vec3(0.3f, 0.0f, 0.0f));
+        ResourceLoader::shaders[SHADER::UI]->sendVector3ToShader("color", glm::vec3(0.62f, 0.38f, 0.49f));
         break;
     }
 

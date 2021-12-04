@@ -28,6 +28,12 @@
     <Filter Include="Source Files\Levels">
       <UniqueIdentifier>{0668b348-66a5-4d2b-af50-9854b892aa70}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\UI">
+      <UniqueIdentifier>{7deec93a-ca18-4c3e-a23b-7280eaeaa93b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UI">
+      <UniqueIdentifier>{67ce4f9a-d518-485e-b011-888f86d6e7f9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -99,9 +105,6 @@
     <ClCompile Include="Text.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Button.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Command.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -137,6 +140,12 @@
     </ClCompile>
     <ClCompile Include="LevelTest.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Image.cpp">
+      <Filter>Source Files\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -221,9 +230,6 @@
     <ClInclude Include="UI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Button.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Command.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -259,6 +265,12 @@
     </ClInclude>
     <ClInclude Include="LevelTest.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Image.h">
+      <Filter>Header Files\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -326,6 +338,12 @@
       <Filter>Source Files\Shaders</Filter>
     </None>
     <None Include="Resources\Shaders\FireShader.vert">
+      <Filter>Source Files\Shaders</Filter>
+    </None>
+    <None Include="Resources\Shaders\UIImage.vert">
+      <Filter>Source Files\Shaders</Filter>
+    </None>
+    <None Include="Resources\Shaders\UIImage.frag">
       <Filter>Source Files\Shaders</Filter>
     </None>
   </ItemGroup>

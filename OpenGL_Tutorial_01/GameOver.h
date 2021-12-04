@@ -2,6 +2,7 @@
 #include "Level.h"
 #include <memory>
 #include "Button.h"
+#include "Image.h"
 
 class GameOver : public Level
 {
@@ -18,5 +19,6 @@ private:
 	static const std::string stateID;
 
 	std::vector<std::shared_ptr<class Button>> buttons;
+	std::unique_ptr<Image> background;
 };
 

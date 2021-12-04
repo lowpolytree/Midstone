@@ -2,6 +2,7 @@
 #include "Level.h"
 #include <vector>
 #include <memory>
+#include "Image.h"
 
 class Menu : public Level
 {
@@ -19,5 +20,6 @@ public:
 private:
 	static const std::string stateID;
 	std::vector<std::shared_ptr<class Button>> buttons;
+	std::unique_ptr<Image> background;
 };
 

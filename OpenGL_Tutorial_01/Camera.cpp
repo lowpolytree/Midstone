@@ -18,7 +18,7 @@ void Camera::sendProjToShader(const std::shared_ptr<Shader>& shader, const std::
 
 void Camera::SetUpCamera(const float mapMidpoint, const float height, const float offset)
 {
-	projM = glm::perspective(glm::radians(45.0f), 1280.0f / 720.0f, 0.1f, 100.0f);
+	projM = glm::perspective(glm::radians(45.0f), 1280.0f / 720.0f, 20.0f, 100.0f);
 
 	auto position = glm::vec3{ mapMidpoint, height, mapMidpoint + offset };
 	auto target = glm::vec3{ mapMidpoint, 0.0f, -mapMidpoint };

@@ -23,6 +23,9 @@ enum class MESH {
 enum class TEXTURE {
 	PALETTE,
 	UI_BUTTON,
+	UI_BACKGROUND,
+	UI_GAMEOVER,
+	UI_WIN
 };
 
 enum class SHADER {
@@ -30,6 +33,7 @@ enum class SHADER {
 	AABB,
 	TEXT,
 	UI,
+	UI_IMAGE,
 	TILE,
 	FIRE
 };
