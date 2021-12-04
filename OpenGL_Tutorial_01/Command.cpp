@@ -15,3 +15,9 @@ void ReplayCommand::Execute()
 {
 	LevelManager::LoadLevel(Scene::LEVEL);
 }
+
+void ToMenuCommand::Execute()
+{
+	LevelManager::levelCounter = 1;
+	LevelManager::LoadLevel(Scene::MENU);
+}

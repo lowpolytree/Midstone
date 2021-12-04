@@ -25,3 +25,9 @@ class ReplayCommand : public Command
 public:
 	virtual void Execute() override;
 };
+
+class ToMenuCommand : public Command
+{
+public:
+	virtual void Execute() override;
+};

@@ -151,7 +151,6 @@ void Map::setTilePositions()
     }
 }
 
-
 glm::vec3 Map::getStartingPosition()
 {
     glm::vec3 startingPosition;

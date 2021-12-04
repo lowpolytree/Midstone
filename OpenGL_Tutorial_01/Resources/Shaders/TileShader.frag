@@ -8,6 +8,7 @@ out vec4 FragColor;
 
 uniform sampler2D tex01;
 uniform bool isIntersectedOnce;
+uniform bool isPassThrough;
 uniform bool isLast;
 uniform bool isBlock;
 
@@ -28,7 +29,7 @@ void main()
 
 	float final = min(ambient + diffuse, 1.0);
 
-	if (isIntersectedOnce && !isBlock){
+	if (isIntersectedOnce && !isBlock && !isPassThrough){
 		FragColor = vec4(tex * 0.7, 1.0);
 	} else {
 		FragColor = vec4(final * tex, 1.0);

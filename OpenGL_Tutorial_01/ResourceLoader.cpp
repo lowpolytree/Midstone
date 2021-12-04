@@ -76,6 +76,8 @@ bool ResourceLoader::LoadResources()
 	textures[TEXTURE::UI_BACKGROUND]->loadTexture("Resources\\Art\\ui_background.png");
 	textures.insert(std::make_pair(TEXTURE::UI_GAMEOVER, std::make_shared<Texture>()));
 	textures[TEXTURE::UI_GAMEOVER]->loadTexture("Resources\\Art\\ui_gameover.png");
+	textures.insert(std::make_pair(TEXTURE::UI_WIN, std::make_shared<Texture>()));
+	textures[TEXTURE::UI_WIN]->loadTexture("Resources\\Art\\ui_winscreen.png");
 
 	//LOADING SHADERS
 	shaders.insert(std::make_pair(SHADER::LAMBERT, std::make_shared<Shader>("Resources\\Shaders\\LambertShader.vert", "Resources\\Shaders\\LambertShader.frag")));

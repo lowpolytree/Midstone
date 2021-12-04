@@ -84,7 +84,6 @@ void Game::Create(){
 	}
 
 	gameStateMachine->PushLevel(new Menu());
-	//gameStateMachine->PushLevel(new Level3());
 }
 
 void Game::Run(){

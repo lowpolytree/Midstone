@@ -126,14 +126,10 @@ void Level5::Update(float deltatime) {
 		}
 
 		if (map->checkIfAllTilesTraversed()) {
-			if (map->checkMapForWin()) {
+			if (map->checkMapForWin())
+			{
 				std::cout << "You win the game!\n";
-				LevelManager::LoadLevel(Scene::GAME_OVER);
-				break;
-			}
-			else {
-				std::cout << "You lost the game!\n";
-				LevelManager::LoadLevel(Scene::GAME_OVER);
+				LevelManager::LoadLevel(Scene::WIN_SCREEN);
 				break;
 			}
 		}

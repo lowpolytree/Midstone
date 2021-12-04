@@ -1,6 +1,8 @@
 #include "LevelManager.h"
 #include "Game.h"
 #include "GameOver.h"
+#include "Menu.h"
+#include "WinScreen.h"
 #include "Level1.h"
 #include "Level2.h"
 #include "Level3.h"
@@ -11,8 +13,16 @@ int LevelManager::levelCounter = 1;
 
 void LevelManager::LoadLevel(const Scene type)
 {
+	if (type == Scene::MENU) {
+		Game::gameStateMachine->ChangeLevel(new Menu());
+	}
+
 	if (type == Scene::GAME_OVER) {
 		Game::gameStateMachine->ChangeLevel(new GameOver());
+	}
+
+	if (type == Scene::WIN_SCREEN) {
+		Game::gameStateMachine->ChangeLevel(new WinScreen());
 	}
 
 	if (type == Scene::LEVEL) {

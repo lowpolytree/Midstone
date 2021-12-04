@@ -3,6 +3,7 @@
 enum class Scene {
 	MENU,
 	GAME_OVER,
+	WIN_SCREEN,
 	LEVEL,
 };
 
