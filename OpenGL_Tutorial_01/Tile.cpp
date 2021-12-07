@@ -44,6 +44,6 @@ void Tile::Render() {
 	tile->getShader()->sendBoolToShader("isBlock", isBlock);
 	tile->Render();
 
-	aabb->setParentModelMatrix(tile->getModelMatrix());
-	aabb->Render();
+	//aabb->setParentModelMatrix(tile->getModelMatrix());
+	//aabb->Render();
 }
