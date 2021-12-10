@@ -22,4 +22,5 @@ private:
 	SDL_GLContext glContext;
 	class Level *currentLevel;
 	class Timer* timer;
+	//class Mix_Music* music;
 };

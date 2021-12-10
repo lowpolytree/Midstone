@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Game.h"
 #include "SDL_ttf.h"
+#include <SDL_mixer.h>
 #include "glew.h"
 #include "Timer.h"
 #include "Level1.h"
@@ -23,13 +24,19 @@ Game::~Game(){
 }
 
 bool Game::Init(){
-	if (SDL_Init(SDL_INIT_VIDEO) != 0) {
+	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) != 0) {
 		std::cout << "Error: Unable to initialize SDL!\n";
 		return false;
 	}
 
 	if (TTF_Init() == -1) {
 		std::cout << "Error: Unable to initialize SDL_TFF!\n";
+	}
+
+	//Initialize SDL_mixer
+	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) != 0)
+	{
+		std::cout << "Error: Unable to initialize SDL_mixer!\n";
 	}
 
 	win = SDL_CreateWindow("Welcome To OpenGL",
@@ -90,6 +97,15 @@ void Game::Run(){
 	timer->Start();
 	SDL_Event ev;
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+
+	//LOADING AND PLAYING MUSIC
+	auto music = Mix_LoadMUS("Resources\\Music\\music.wav");
+
+	if (!music) {
+		std::cout << "ERROR: Music failed to load!\n";
+	}
+
+	Mix_PlayMusic(music, -1);
 
 	while(s_isRunning) {
 		timer->UpdateFrameTicks();
